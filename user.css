@@ -1,0 +1,19 @@
+.button.button-green,
+.GlueButton.GlueButton--style-green {
+	color: #000000
+}
+
+.view-player .now-playing-container .button-add {
+	color: #000000
+}
+
+.SearchInput {
+	color: #29292F;
+	display: inline-block;
+	width:100%;
+}
+.SearchInput__input {
+	color: #9898A6;
+	background-color: #29292F;
+	width:100%;
+}
