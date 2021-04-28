@@ -1,6 +1,7 @@
 /* Set the font to Nationale if the user has it installed, otherwise rely on Spotify default */
 *, body {
 	font-family: Nationale, var(--glue-font-family),  sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 .button.button-green,
@@ -12,6 +13,11 @@
 	color: #FFFFFF
 }
 
+.listening .global-position__rectangle {
+	background-color: transparent;
+	padding-top: 5px;
+}
+
 .SearchInput {
 	color: #29292F;
 	display: inline-block;
@@ -21,6 +27,7 @@
 	color: #9898A6;
 	background-color: #29292F;
 	width:100%;
+	min-width: 200px;
 }
 /* Home page */
 
@@ -49,10 +56,6 @@
 	background-color: var(--modspotify_main_bg) !important;
 }
 
-.Button--style-green,
-.button.button-green, .button.button-white {
-	color: var(--modspotify_main_bg) !important;
-}
 
 .glue-page-header.glue-page-header--album .glue-page-header__content-inner .glue-page-header__title,
 .glue-page-header.glue-page-header--artist .glue-page-header__content-inner .glue-page-header__title,
@@ -69,22 +72,7 @@ span.glue-page-header__title-text {
 	margin-top: 40px;
 }
 
-/*Hide cover image overlay*/
-.card-overlay {
-	visibility: hidden !important;
-}
 
-
-.glue-page-header__content-inner,
-.glue-page-header__data,
-.glue-page-header__title,
-.Header__content-inner,
-.Header__data,
-.Header__title,
-.Header__title-text,
-.Header__title-text-inner {
-	overflow: visible !important;
-}
 
 .glue-page-header__label .header-verified-check {
 	background-color: transparent;
@@ -99,30 +87,12 @@ span.glue-page-header__title-text {
 .message-container {
 	color: #FFFFFF !important;
 }
+
+/* Set the bottom bar to 96px */
 :root {
 	--bar-height: 96px;
 }
 
-.browser-navigation-top-bar .button:disabled:not(.current):hover {
-	background-color: #242429 !important;
-}
-
-/* Button is disabled, default style*/
-.browser-navigation-top-bar .button:disabled:not(.current) {
-	background-color: #161619;
-	border: 1px solid rgba(235,235,255,0.05);
-}
-
-#view-browser-navigation-top-bar > button.button.button-icon-only.spoticon-chevron-right-16.forward {
-	margin-left: 10px;
-	background-color: #161619;
-	border: 1px solid rgba(235,235,255,0.05);
-}
-
-#view-browser-navigation-top-bar > button.button.button-icon-only.spoticon-chevron-left-16.back {
-	background-color: #161619;
-	border: 1px solid rgba(235,235,255,0.05);
-}
 
 /*Exclude these elements from draggable property because it stops them from clickable*/
 .profile-items-container,
@@ -134,57 +104,6 @@ span.glue-page-header__title-text {
 /*who uses those, lol*/
 ::-webkit-scrollbar-button {
 	display: none !important;
-}
-
-/*Hide cover image overlay*/
-.card-overlay {
-	visibility: hidden !important;
-}
-
-/*Lift up cover when hovering on it*/
-.card-image-content-wrapper,
-.Card:not(.Card--artist) .Card__image-wrapper {
-	transition-property: transform, box-shadow !important;
-	transition-duration: 1s !important;
-	transition-timing-function: cubic-bezier(.3,0,0,1) !important;
-	box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-
-.card-image-hit-area .card-button-add,
-.card-image-hit-area .card-button-play,
-.card-image-hit-area .card-button-more,
-.Card__image-hit-area .card-button-add,
-.Card__image-hit-area .card-button-play,
-.Card__image-hit-area .card-button-more,
-.Card__image-hit-area .Card__play-button,
-.Card__image-hit-area .Card__add-button,
-.Card__image-hit-area .Card__more-button,
-.Card__image-hit-area .Card__overlay  {
-	transition-property: all !important;
-	transition-duration: 1s !important;
-	transition-timing-function: cubic-bezier(.3,0,0,1) !important;
-	opacity: 0 !important;
-}
-
-.Card__image-hit-area:hover .Card__play-button,
-.Card__image-hit-area:hover .Card__add-button,
-.Card__image-hit-area:hover .Card__more-button,
-.Card__image-hit-area:hover .Card__overlay {
-	opacity: 1 !important;
-}
-
-.glue-page-header__content .glue-page-header__image-inner {
-	border-radius: 10px;
-	box-shadow: unset !important;
-}
-
-.glue-page-header__full-description-overlay {
-	box-shadow: unset !important;
-}
-
-.card-placeholder-wrapper {
-	background: transparent !important;
 }
 
 /*Spice up search input background*/
@@ -424,7 +343,7 @@ Change text color in playlist
 
 #video-player .album-art__foreground {
 	flex-direction: row;
-	text-align: right;	
+	text-align: left;	
 }
 
 #video-player .album-art__background {
@@ -434,6 +353,7 @@ Change text color in playlist
 #video-player .album-art__track-details {
 	padding-left: 50px;
 	line-height: initial;
+	max-width: 60%;
 }
 
 #video-player .album-art__track-title {
@@ -525,8 +445,24 @@ Change text color in playlist
 
 .Button--style-green,
 .button.button-green, .button.button-white {
+	cursor: pointer;
 	border-radius: 4px;
 	color: var(--modspotify_main_bg) !important;
+}
+
+.CanonicalButton, .SidebarListItemLink:link, 
+.SidebarListItemLink:visited, 
+.profile, .button.button-icon-only, 
+.MenuItem, .slider, 
+.context-menu .item.hover:not(.disabled),
+.view-player .extra-controls-container .button-queue,
+.view-player .extra-controls-container .button-devices, 
+.button.button-with-stroke, 
+.button.button-icon-with-stroke,
+.button.button-icon-only.button-add,
+.tl-row:hover .button-play, 
+.tl-row.contextmenu-active .button-play {
+	cursor: pointer;
 }
 
 
@@ -564,10 +500,10 @@ span.glue-page-header__title-text {
 	overflow: unset;
 }
 
-
 #now-playing-image-small .cover-image {
-    width: 60px;
-    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px -6px 24px;
+	border: 2px solid #2a2a2a;
+	border-radius: 4px;
 }
 
 .text-container {
@@ -617,9 +553,6 @@ span.glue-page-header__title-text {
 	display: none !important;
 }
 
-.view-player .extra-controls-container .button-devices {
-	cursor: pointer;
-}
 
 /*.progress-container .progress-bar,
 .progress-container .inner {
@@ -775,16 +708,28 @@ html .SidebarList__title {
 	opacity: 0;
 }
 
+/* Change animation on card hover */
+.card-button-add, .card-button-play, .card-button-more, .card-overlay {
+	visibility: unset !important;
+	opacity: 0 !important;
+	transition: opacity 0.5s ease-in-out
+}
+.card-image-hit-area:not(.no-hover):hover .card-overlay, .card-image-hit-area:not(.no-hover):hover .card-button-add, .card-image-hit-area:not(.no-hover):hover .card-button-play, .card-image-hit-area:not(.no-hover):hover .card-button-more, .card-image-wrapper.contextmenu-active .card-overlay, .card-image-wrapper.contextmenu-active .card-button-add, .card-image-wrapper.contextmenu-active .card-button-play, .card-image-wrapper.contextmenu-active .card-button-more, .card:not(.card-horizontal).pressed .card-overlay, .card:not(.card-horizontal).pressed .card-button-add, .card:not(.card-horizontal).pressed .card-button-play, .card:not(.card-horizontal).pressed .card-button-more {
+	opacity: 1 !important;
+	transition: opacity 0.5s ease-in-out
+}
 
 /* Magical search bar width changing, and animation */
 
 .content-top-bar__search-input {
+	min-width: 24px !important;
 	flex: 100;
 	max-width: 100%;
 }
 
 [aria-label="Search Spotify"][aria-hidden="true"] {
-    width:15% !important;
+	min-width: 24px !important;
+    width: 10% !important;
 	transition: width 0.5s;
 }
 [aria-label="Search Spotify"] {
