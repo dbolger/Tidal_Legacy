@@ -1,3 +1,6 @@
+## THIS REPO HAS BEEN ARCHIVED. No further changes will be made to this variation of the Tidal project.
+## For spicetify-cli v2, please refer to https://github.com/FivePixels/Tidal.
+
 # Tidal
 
 Tidal is a Spicetify theme based on Tidal. 
